@@ -22,13 +22,23 @@ def pbcspreadrowdata(pbc, data, shell=1, seconddimshepe=-1):
 
 
 if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser(description='This script calculate the atoms exposition to the vacuum.')
+    parser._action_groups.pop()
+    required = parser.add_argument_group('required arguments')
+    required.add_argument('--files', nargs='+', metavar=('file1', 'file2'), required=True, help='the molecules (xyz, geometry.in, etc) to analyze.')
+    optional = parser.add_argument_group('optional arguments')
+    optional.add_argument('--save_json', metavar='file.json', action='store', help='the name of a json file to save the data.')
+    args = parser.parse_args()
+
+    
     parser = argparse.ArgumentParser(description='The script mensure the Effective Coordination Number (ECN) and the average bound distance (dav), for one or more atomic structures. It work with any atomic structuresfile readble by ase.io.read(), including structures with periodic boundary conditions.')
     parser.add_argument('--files', nargs='+', help='the molecules (xyz, geometry.in, etc) to analyze.')
-    parser.add_argument('--json_file', metavar='file.json', action='store', default=None, help='the name of a json file to save the data.')
+    parser.add_argument('--save_json', metavar='file.json', action='store', default=None, help='the name of a json file to save the data.')
     args = parser.parse_args()
 
     # creating variables to save a json file
-    if args.json_file:
+    if args.save_json:
         import pandas as pd
         meus_dados = pd.DataFrame()
         all_positions = []
@@ -98,20 +108,20 @@ if __name__ == '__main__':
             print("%3d     %2s    %4.2f  %4.2f" % (index, element, refecn[index], refdav[index]))
         print('')
 
-        if args.json_file:
+        if args.save_json:
             all_positions.append(positions)
             all_chemical_symbols.append(cheme)
             all_ecn.append(refecn[:len(ecn)])
             all_dav.append(refdav[:len(ecn)])
 
-    if args.json_file:
+    if args.save_json:
         meus_dados['files'] = args.files
         meus_dados['positions'] = all_positions
         meus_dados['cheme'] = all_chemical_symbols
         meus_dados['ecn'] = all_ecn
         meus_dados['dav'] =  all_dav
         
-        print('Writing json_file: {}'.format(args.json_file))
-        meus_dados.to_json(args.json_file)
+        print('Writing json file: {}'.format(args.save_json))
+        meus_dados.to_json(args.save_json)
 
         
