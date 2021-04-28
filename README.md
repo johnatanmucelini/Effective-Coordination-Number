@@ -44,7 +44,7 @@ To analyze all the example structures, including molecules (xyz files) and a cry
 
 ```
 $ python ecn.py --files test_case/* > output2.txt
-``
+```
 
 To analyse all the example structures and save data found in a json file:
 
