@@ -20,7 +20,9 @@ The following python packages are prerequisites:
 The **pandas** package is necessary to save the data of the atomic structures analyzed, which I strongly recommend.
 
 If you employ Anaconda package management, you can install the packages with the following commands:
+
 ```bash
+conda install numpy scipy pandas
 conda install -c conda-forge ase
 ```
 
