@@ -23,18 +23,12 @@ def pbcspreadrowdata(pbc, data, shell=1, seconddimshepe=-1):
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(description='This script calculate the atoms exposition to the vacuum.')
+    parser = argparse.ArgumentParser(description='The script mensure the Effective Coordination Number (ECN) and the average bound distance (dav), for one or more atomic structures. It work with any atomic structuresfile readble by ase.io.read(), including structures with periodic boundary conditions.')
     parser._action_groups.pop()
     required = parser.add_argument_group('required arguments')
-    required.add_argument('--files', nargs='+', metavar=('file1', 'file2'), required=True, help='the molecules (xyz, geometry.in, etc) to analyze.')
+    required.add_argument('--files', nargs='+', metavar=('file1', 'file2'), required=True, help='One ore more structure files (xyz, geometry.in, POSCAR, etc) to analyze.')
     optional = parser.add_argument_group('optional arguments')
-    optional.add_argument('--save_json', metavar='file.json', action='store', help='the name of a json file to save the data.')
-    args = parser.parse_args()
-
-    
-    parser = argparse.ArgumentParser(description='The script mensure the Effective Coordination Number (ECN) and the average bound distance (dav), for one or more atomic structures. It work with any atomic structuresfile readble by ase.io.read(), including structures with periodic boundary conditions.')
-    parser.add_argument('--files', nargs='+', help='the molecules (xyz, geometry.in, etc) to analyze.')
-    parser.add_argument('--save_json', metavar='file.json', action='store', default=None, help='the name of a json file to save the data.')
+    optional.add_argument('--save_json', metavar='file.json', action='store', help='If defined, the data collecte will be writen in this json file.') 
     args = parser.parse_args()
 
     # creating variables to save a json file

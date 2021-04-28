@@ -30,15 +30,20 @@ conda install -c conda-forge ase
 
 Script help messange:
 
-```bash
-usage: ecn.py [-h] [--files FILES [FILES ...]] [--json_file file.json]
+```
+usage: ecn.py [-h] --files file1 [file2 ...] [--save_json file.json]
 
-The script mensure the Effective Coordination Number (ECN) and the average bound distance (dav), for one or more atomic structures. It work with any atomic structuresfile readble by ase.io.read(), including structures with periodic boundary conditions.
+The script mensure the Effective Coordination Number (ECN) and the average bound distance (dav), 
+for one or more atomic structures. It work with any atomic structuresfile readble by the 
+ase.io.read function, including structures with periodic boundary conditions.
+
+required arguments:
+  --files file1 [file2 ...]
+                        One ore more structure files (xyz, geometry.in, POSCAR, etc) to analyze.
 
 optional arguments:
-  -h, --help                 show this help message and exit
-  --files FILES [FILES ...]  the molecules (xyz, geometry.in, etc) to analyze.
-  --json_file file.json      the name of a json file to save the data.
+  --save_json file.json
+                        If defined, the data collecte will be writen in this json file.
 ```
 
 
