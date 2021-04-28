@@ -1,6 +1,8 @@
-# Effective-Coordination-Number
+# Effective Coordination Number
 
 This *python* script calculates the effective coordination number and average bond distance from almost any atomic structure file type. It work with any atomic structuresfile readble by ase.io.read(), including structures with periodic boundary conditions.
+
+See this reference: **J. Appl. Phys. 2011, 109, 023502**.
 
 ## For newbies:
 
